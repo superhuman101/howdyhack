@@ -1,0 +1,36 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $location = htmlspecialchars($_POST['location']);
+    $date = htmlspecialchars($_POST['date']);
+    $time = htmlspecialchars($_POST['time']);
+
+    // Initialize a variable to hold the output
+    $output = "<h2>Submitted Data</h2>";
+    $output .= "<p><strong>Location:</strong> $location</p>";
+    $output .= "<p><strong>Date:</strong> $date</p>";
+    $output .= "<p><strong>Time:</strong> $time</p>";
+
+    // Handle file upload
+    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+        $uploadDir = 'uploads/';
+        $uploadFile = $uploadDir . basename($_FILES['image']['name']);
+
+        // Check if the directory exists, if not, create it
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0755, true);
+        }
+
+        // Move the uploaded file to the uploads directory
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
+            $output .= "<p><strong>Uploaded File:</strong> <a href='$uploadFile'>" . basename($uploadFile) . "</a></p>";
+        } else {
+            $output .= "<p>File upload failed.</p>";
+        }
+    } else {
+        $output .= "<p>No file uploaded or there was an upload error.</p>";
+    }
+
+    // Display the output
+    echo $output;
+}
+?>
