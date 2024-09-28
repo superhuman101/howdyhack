@@ -57,17 +57,20 @@
         input[type="submit"]:hover {
             background-color: #500000;
         }
-        #map {
-            height: 300px;
-            width: 100%;
-            margin-bottom: 20px;
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            background: #fff;
+            border: 2px solid #500000;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 <body>
 
 <h1>Where I found Reveille!</h1>
-<form action="submit_location.php" method="post" enctype="multipart/form-data">
+<form id="locationForm">
     <label for="location">Location:</label>
     <input type="text" id="location" name="location" required placeholder="Enter your location">
 
@@ -78,10 +81,43 @@
     <input type="time" id="time" name="time" required>
 
     <label for="image">Upload Picture:</label>
-    <input type="file" id="image" name="image" accept="image/*" required>
+    <input type="file" id="image" name="image" accept="image/*">
 
     <input type="submit" value="Submit">
 </form>
 
+<div id="output" class="output" style="display:none;"></div>
+
+<script>
+    document.getElementById('locationForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting
+
+        // Get form values
+        const location = document.getElementById('location').value;
+        const date = document.getElementById('date').value;
+        const time = document.getElementById('time').value;
+        const image = document.getElementById('image').files[0];
+
+        // Create output message
+        let outputHtml = `<h2>Submitted Data</h2>`;
+        outputHtml += `<p><strong>Location:</strong> ${location}</p>`;
+        outputHtml += `<p><strong>Date:</strong> ${date}</p>`;
+        outputHtml += `<p><strong>Time:</strong> ${time}</p>`;
+        
+        if (image) {
+            outputHtml += `<p><strong>Uploaded File:</strong> ${image.name}</p>`;
+        }
+
+        // Display the output
+        const outputDiv = document.getElementById('output');
+        outputDiv.innerHTML = outputHtml;
+        outputDiv.style.display = 'block';
+
+        // Reset the form
+        document.getElementById('locationForm').reset();
+    });
+</script>
+
 </body>
 </html>
+
