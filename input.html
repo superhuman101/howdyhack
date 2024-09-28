@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Where I found Miss Rev!!</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -65,6 +64,12 @@
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
+        img {
+            max-width: 100%; /* Make sure the image is responsive */
+            margin-top: 10px;
+            border: 2px solid #500000;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -96,7 +101,8 @@
         const location = document.getElementById('location').value;
         const date = document.getElementById('date').value;
         const time = document.getElementById('time').value;
-        const image = document.getElementById('image').files[0];
+        const imageInput = document.getElementById('image');
+        const imageFile = imageInput.files[0];
 
         // Create output message
         let outputHtml = `<h2>Submitted Data</h2>`;
@@ -104,8 +110,11 @@
         outputHtml += `<p><strong>Date:</strong> ${date}</p>`;
         outputHtml += `<p><strong>Time:</strong> ${time}</p>`;
         
-        if (image) {
-            outputHtml += `<p><strong>Uploaded File:</strong> ${image.name}</p>`;
+        if (imageFile) {
+            // Create a URL for the uploaded image file
+            const imageUrl = URL.createObjectURL(imageFile);
+            outputHtml += `<p><strong>Uploaded Picture:</strong></p>`;
+            outputHtml += `<img src="${imageUrl}" alt="Uploaded Image">`;
         }
 
         // Display the output
@@ -120,4 +129,3 @@
 
 </body>
 </html>
-
