@@ -32,24 +32,13 @@
 
     <script>
         // Initialize the map and set its view to a default location and zoom level
-        var map = L.map('map').setView([40.7128, -74.0060], 13); // Coordinates for New York City
+        var map = L.map('map').setView([30.6120, -96.343], 16); // Coordinates for New York City
 
         // Add the OpenStreetMap tiles
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
-        // Add a marker at the default location
-        var marker = L.marker([40.7128, -74.0060]).addTo(map)
-            .bindPopup('<b>New York City</b><br>This is a default popup message.')
-            .openPopup();
-
-        // Example of adding more markers
-        var locations = [
-            {coords: [40.730610, -73.935242], popupText: "Marker in Brooklyn"},
-            {coords: [40.758896, -73.985130], popupText: "Times Square"},
-            {coords: [40.748817, -73.985428], popupText: "Empire State Building"}
-        ];
 
         // Loop through the locations and add markers
         locations.forEach(location => {
@@ -58,20 +47,13 @@
         });
 
         // Add a circle on the map as an example of additional features
-        var circle = L.circle([40.7128, -74.0060], {
-            color: 'red',
-            fillColor: '#f03',
-            fillOpacity: 0.5,
-            radius: 500
-        }).addTo(map).bindPopup("I am a circle.");
+
 
         // Add a polygon as an example of another shape
-        var polygon = L.polygon([
-            [40.730610, -73.935242],
-            [40.738610, -73.925242],
-            [40.728610, -73.915242]
-        ]).addTo(map).bindPopup("I am a polygon.");
     </script>
+
+</body>
+</html>
 
 </body>
 </html>
