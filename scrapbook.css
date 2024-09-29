@@ -1,6 +1,7 @@
+/* Body and General */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f0f5;
+    font-family: 'Pacifico', cursive;
+    background-color: #faf3e3; /* Very light brown for warmth */
     margin: 0;
     padding: 0;
     text-align: center;
@@ -13,8 +14,9 @@ body {
 }
 
 h1 {
-    color: #500000; /* Maroon for the A&M theme */
+    color: #500000; /* Texas A&M maroon */
     margin-bottom: 40px;
+    font-family: 'Pacifico', cursive;
 }
 
 /* Upload Section */
@@ -23,16 +25,18 @@ h1 {
 }
 
 button {
-    background-color: #500000;
+    background-color: #a67c52; /* Soft brown button */
     color: white;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     font-size: 16px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 button:hover {
-    background-color: #8C001A;
+    background-color: #ff99cc; /* Light pink for hover */
 }
 
 /* Image Grid */
@@ -40,17 +44,25 @@ button:hover {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+    background-color: #fff8f0; /* Light cream/brown */
+    padding: 20px;
+    border-radius: 20px;
 }
 
 .image-item {
     position: relative;
     overflow: hidden;
+    background-color: #ffe6f0; /* Soft pastel pink for each photo */
+    padding: 10px;
+    border-radius: 15px;
 }
 
 .image-item img {
     width: 100%;
     height: auto;
     border-radius: 10px;
+    border: 5px solid #d2a679; /* Light brown border for photos */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
 }
 
@@ -58,6 +70,7 @@ button:hover {
     transform: scale(1.1); /* Zoom-in effect on hover */
 }
 
+/* Hover Info */
 .hover-details {
     position: absolute;
     bottom: 0;
@@ -69,37 +82,41 @@ button:hover {
     padding: 10px;
     opacity: 0;
     transition: opacity 0.3s ease;
+    border: 3px solid #ff99cc; /* Soft pink border */
+    transform: rotate(-3deg);
 }
 
 .image-item:hover .hover-details {
     opacity: 1;
+    background-color: #ffd1dc; /* Light pink sticky note effect */
+    color: #500000; /* Maroon text */
+    font-family: 'Caveat', cursive;
 }
 
-/* Footer styling */
-footer {
-    background-color: #500000;
-    color: rgba(145, 142, 142, 0.808);
-    padding: 15px 0;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    left: 0; /* Ensures the footer starts at the left edge */
-    margin: 0; /* No margin around the footer */
+/* Heart Icon Navigation */
+.nav-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
 }
 
-footer nav {
-    display: inline-block;
+.nav-button img {
+    width: 40px;
+    height: 40px;
 }
 
-footer nav a {
-    font-family: 'Rubik', sans-serif;
-    color: white;
-    text-decoration: none;
-    margin: 0 220px;
-    font-weight: 500;
+button img {
+    width: 20px;
+    height: 20px;
 }
 
-footer nav a:hover {
-    text-decoration: underline;
+/* Optional: Heart buttons for pagination or navigation */
+.nav-button img {
+    transition: transform 0.3s ease;
 }
+
+.nav-button:hover img {
+    transform: scale(1.2); /* Make the heart bigger when hovered */
+}
+
