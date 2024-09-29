@@ -12,10 +12,9 @@ app.use(bodyParser.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // MongoDB connection
-mongoose.connect('mongodb://localhost:27017/revLocations', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost:27017/hhdb')
     .then(() => console.log('MongoDB connected'))
-    .catch(err => console.log(err));
-
+    .catch(err => console.log('MongoDB connection error:', err));
 // Define a schema and model
 const locationSchema = new mongoose.Schema({
     location: String,
