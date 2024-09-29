@@ -5,6 +5,15 @@ body {
     background-color: transparent;
 }
 
+.top-left-gif {
+    position: fixed; /* Sticks to the top-right corner even on scroll */
+    top: 10px;       /* Distance from the top */
+    left: 10px;     /* Distance from the right */
+    width: 90px;     /* Set the new width of the GIF to make it smaller */
+    height: auto;    /* Maintain the aspect ratio */
+    z-index: 1000;   /* Ensure the GIF appears above other elements */
+}
+
 footer {
     background-color: #450012;
     color: rgba(145, 142, 142, 0.808);
