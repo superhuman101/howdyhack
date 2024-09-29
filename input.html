@@ -16,6 +16,12 @@
 
 <h1>Where Reveille was last found!</h1>
 <form id="locationForm">
+    <label for="locationName">Location Name:</label>
+    <input type="text" id="locationName" name="locationName" required placeholder="Enter Location Name">
+
+    <label for="description">Location Name:</label>
+    <input type="text" id="description" name="description" required placeholder="Add a Description">
+
     <label for="longitude">Longitude:</label>
     <input type="text" id="longitude" name="longitude" required placeholder="Enter Longitude">
     
@@ -36,12 +42,16 @@
         event.preventDefault(); // Prevent form submission
 
         // Get form values
+        const locationName = document.getElementById('locationName').value;
+        const description = document.getElementById('description').value;
         const longitude = document.getElementById('longitude').value;
         const latitude = document.getElementById('latitude').value;
         const date = document.getElementById('date').value;
         const time = document.getElementById('time').value;
 
         // Store values in localStorage
+        localStorage.setItem('locationName', locationName);
+        localStorage.setItem('description', description);
         localStorage.setItem('longitude', longitude);
         localStorage.setItem('latitude', latitude);
         localStorage.setItem('date', date);

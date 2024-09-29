@@ -16,8 +16,7 @@ var customIcon = L.icon({
 
 // Existing locations (predefined)
 const locations = [
-    { "Building": "MSC", "Longitude": 30.6122578, "Latitude": -96.3415445 },
-    { "Building": "ZACH", "Longitude": 30.6210864, "Latitude": -96.3403882 },
+    { "Building": "MSC", "Longitude": 30.6122578, "Latitude": -96.3415445 }
     // Add more locations as needed
 ];
 
@@ -25,10 +24,12 @@ const locations = [
 locations.forEach(function(location) {
     L.marker([location.Longitude, location.Latitude], { icon: customIcon })
         .addTo(map)
-        .bindPopup(`<b>${location.Building}</b><br>Coordinates: ${location.Longitude}, ${location.Latitude}`);
+        .bindPopup('<b>MSC</b><br> Saw Rev at the MSC today! Best day EVER!!<br>Date: 2024-09-01<br>Time: 12:00');
 });
 
 // Retrieve submitted coordinates from localStorage
+const locationName = localStorage.getItem('locationName');
+const description = localStorage.getItem('description');
 const longitude = localStorage.getItem('longitude');
 const latitude = localStorage.getItem('latitude');
 const date = localStorage.getItem('date');
@@ -41,7 +42,7 @@ if (longitude && latitude && date && time) {
     console.log("Adding new pin to the map"); // Debugging
     L.marker([longitude, latitude], { icon: customIcon })
         .addTo(map)
-        .bindPopup(`<b>New Location</b><br>Coordinates: ${longitude}, ${latitude}<br>Date: ${date}<br>Time: ${time}`);
+        .bindPopup(`<b>${locationName}</b><br>${description}<br>Date: ${date}<br>Time: ${time}`);
     
     // Clear localStorage after adding the pin
     // localStorage.removeItem('longitude');
