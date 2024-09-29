@@ -14,33 +14,49 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f0f0;
+            background-color: #705226; /* Background color */
             font-family: Arial, sans-serif;
         }
         h1 {
+            display: flex;
+            align-items: center;
             font-family: 'Rye', cursive;
-            font-size: 50px;
+            font-size: 100px; /* Font size */
             margin-bottom: 20px;
-            color: #000000;
+            color: white; /* Text color */
+        }
+        .star {
+            color: yellow; /* Star color */
+            font-size: 100px; /* Size of stars */
+            margin: 0 10px; /* Spacing around stars */
+        }
+        img {
+            max-width: 1500px; /* Increased image size */
+            height: auto; /* Maintain aspect ratio */
+            margin: 20px 0; /* Spacing around the image */
         }
         button {
-            padding: 15px 30px;
-            font-size: 16px;
+            padding: 20px 40px; /* Increased padding for a larger button */
+            font-size: 24px; /* Increased font size */
             cursor: pointer;
             border: none;
             border-radius: 5px;
-            background-color: #007BFF;
-            color: white;
+            background-color: black; /* Button color */
+            color: white; /* Text color */
+            font-family: 'Rye', cursive; /* Same font as the title */
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #333; /* Darker shade on hover */
         }
     </style>
 </head>
 <body>
 
-    <h1>WANTED: REV</h1>
-    <button id="enterButton">Click to Enter</button>
+    <h1>
+        <span class="star">★</span> WANTED: REV <span class="star">★</span>
+    </h1>
+    <img src="rev1.png" alt="REV Image"> <!-- Updated image file name -->
+    <button id="enterButton">Click if you know</button>
 
     <script>
         document.getElementById("enterButton").onclick = function() {
@@ -52,4 +68,3 @@
 
 </body>
 </html>
-
