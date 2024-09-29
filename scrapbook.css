@@ -99,3 +99,32 @@ h1 {
     color: #500000; /* Maroon text */
     font-family: 'Caveat', cursive;
 }
+
+
+footer {
+    background-color: #500000;
+    color: rgba(145, 142, 142, 0.808);
+    padding: 15px 0;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0; /* Ensures the footer starts at the left edge */
+    margin: 0; /* No margin around the footer */
+}
+
+footer nav {
+    display: inline-block;
+}
+
+footer nav a {
+    font-family: 'Rubik', sans-serif;
+    color: white;
+    text-decoration: none;
+    margin: 0 120px;
+    font-weight: 500;
+}
+
+footer nav a:hover {
+    text-decoration: underline;
+}
