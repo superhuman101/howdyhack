@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WANTED: REV</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            font-family: 'Rye', cursive;
+            font-size: 50px;
+            margin-bottom: 20px;
+            color: #000000;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>WANTED: REV</h1>
+    <button id="enterButton">Click to Enter</button>
+
+    <script>
+        document.getElementById("enterButton").onclick = function() {
+            alert("Welcome!");
+            // Uncomment the line below to redirect to another page
+            // window.location.href = "your-page.html";
+        };
+    </script>
+
+</body>
+</html>
+
