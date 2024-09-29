@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spin the Wheel - Texas A&M Jeopardy</title>
+    <link rel="stylesheet" href="spin-the-wheel-jeopardy.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>A&M Trivia Showdown</h1>
+        <div class="wheel-container">
+            <canvas id="wheelCanvas" width="500" height="500"></canvas>
+            <button id="spinButton" onclick="spin()">Spin!</button>
+        </div>
+
+        <!-- Display Question -->
+        <div id="question-container">
+            <h2 id="category"></h2>
+            <p id="question"></p>
+            <input type="text" id="answerInput" placeholder="Type your answer">
+            <button id="submitAnswer" onclick="submitAnswer()">Submit Answer</button>
+            <p id="feedback"></p>
+        </div>
+
+        <!-- Score Section -->
+        <div class="score-board">
+            <h2>Your Score: <span id="score">0</span></h2>
+        </div>
+    </div>
+
+    <script src="spin-the-wheel-jeopardy.js"></script> <!-- Link to JavaScript file -->
+</body>
+</html>
