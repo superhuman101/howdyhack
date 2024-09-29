@@ -1,5 +1,9 @@
 // Create a map centered at a specific location
-var map = L.map('map').setView([30.614081, -96.341229], 15); // Adjust this to center your map
+var map = L.map('map', {
+    center: [30.614081, -96.341229], // Center the map at the specified location
+    zoom: 15, // Set the zoom level
+    zoomControl: false // Disable the default zoom controls (+/- buttons)
+});
 
 // Add OpenStreetMap tiles to the map
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
