@@ -1,21 +1,34 @@
-// Initialize the map and set its view to a default location and zoom level
-var map = L.map('map', {zoomControl: false}).setView([30.6120, -96.343], 16); // Coordinates for College Station, TX
+// Create a map centered at a specific location
+var map = L.map('map').setView([30.614081, -96.341229], 15); // Adjust this to center your map
 
-// Add the OpenStreetMap tiles
+// Add OpenStreetMap tiles to the map
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
-// Create a custom icon for the marker
-var companyIcon = L.icon({
-    iconUrl: './IMG_1306 2.png', // Replace with your image URL
-    iconSize: [200, 200], // size of the icon
-    iconAnchor: [95, 20], // point of the icon which will correspond to marker's location
-    popupAnchor: [0, 0]  // point from which the popup should open relative to the iconAnchor
+// Define custom icon
+var customIcon = L.icon({
+    iconUrl: './IMG_1306 2.png', // Path to your custom icon
+    iconSize: [100, 100], // Adjust the size of the icon
+    iconAnchor: [45, 10], // Point of the icon which will correspond to marker's location (bottom center)
+    popupAnchor: [0, 0], // Point from which the popup should open relative to the iconAnchor
 });
 
-// Add the marker with the custom icon
-L.marker([30.6120, -96.343], {icon: companyIcon}).addTo(map)
-    .bindPopup('<b>I Spy Rev!</b><br>Spotted Rev at Gene Stallings right next to the MSC!').openPopup();
+// CSV data converted to a JavaScript array
+const locations = [
+    { "Building": "MSC", "Longitude": 30.6122578, "Latitude": -96.3415445 },
+    { "Building": "ZACH", "Longitude": 30.6210864, "Latitude": -96.3403882 },
+    { "Building": "ILCB", "Longitude": 30.6121286, "Latitude": -96.344399 },
+    { "Building": "RUDDER", "Longitude": 30.612794, "Latitude": -96.3397918 },
+    { "Building": "HELD", "Longitude": 30.6151096, "Latitude": -96.3386853 },
+    { "Building": "ACADEMIC BUILDING", "Longitude": 30.6157848, "Latitude": -96.3407941 },
+    { "Building": "KYLE FIELD", "Longitude": 30.609879, "Latitude": -96.3409651 }
+];
 
-// Additional features like circles or polygons can be added here
+// Function to add markers to the map with custom icon
+locations.forEach(function(location) {
+    L.marker([location.Longitude, location.Latitude], { icon: customIcon })
+        .addTo(map)
+        .bindPopup(`<b>${location.Building}</b><br>Coordinates: ${location.Longitude}, ${location.Latitude}`)
+        .openPopup();
+});

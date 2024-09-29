@@ -1,88 +1,17 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Where I found Miss Rev!!</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f9f9f9;
-            font-family: 'Poppins', sans-serif;
-        }
-        h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 40px;
-            margin-bottom: 20px;
-            color: #333;
-        }
-        form {
-            max-width: 400px;
-            padding: 20px;
-            background: #fff;
-            border: 2px solid #500000;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #555;
-        }
-        select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 2px solid #500000;
-            border-radius: 10px;
-            background-color: #ffe6e1;
-            font-size: 16px;
-            color: #333;
-            transition: border-color 0.3s;
-        }
-        select:focus {
-            border-color: #500000;
-            outline: none;
-        }
-        input[type="date"],
-        input[type="time"],
-        input[type="file"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 2px solid #500000;
-            border-radius: 10px;
-            background-color: #ffe6e1;
-            font-size: 16px;
-            color: #333;
-        }
-        input[type="submit"] {
-            width: 100%;
-            background-color: #500000;
-            color: white;
-            padding: 10px;
-            border-radius: 10px;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        input[type="submit"]:hover {
-            background-color: #500000;
-        }
-    </style>
+    <link rel="stylesheet" href="input_styles.css">
 </head>
 <body>
 
 <h1>Where Reveille was last found!</h1>
 <form id="locationForm">
     <label for="location">Location:</label>
-    <input type="text" id="location" name="location" required placeholder="Enter your location">
     <select id="location" name="location" required>
         <option value="" disabled selected>Select a location</option>
         <option value="Main Campus">Main Campus</option>
@@ -162,6 +91,111 @@
     });
 </script>
 
+<footer>
+    <nav>
+        <a href="index.html">Where's Rev?</a>
+        <a href="input.html">Upload</a>
+        <a href="scrapbook.html">Scrapbook</a>
+    </nav>
+</footer>
+
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where I found Miss Rev!!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="input_styles.css">
+</head>
+<body>
+
+<h1>Where Reveille was last found!</h1>
+<form id="locationForm">
+    <label for="location">Location:</label>
+    <select id="location" name="location" required>
+        <!-- Dropdown options will be populated using JavaScript -->
+    </select>
+
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required>
+
+    <label for="time">Time:</label>
+    <input type="time" id="time" name="time" required>
+
+    <label for="image">Upload Picture:</label>
+    <input type="file" id="image" name="image" accept="image/*">
+
+    <input type="submit" value="Submit">
+</form>
+
+<div id="output" class="output" style="display:none;"></div>
+
+<script>
+    // CSV data converted to a JavaScript array
+    const locations = [
+        { "Building": "MSC", "Longitude": 30.6122578, "Latitude": -96.3415445 },
+        { "Building": "ZACH", "Longitude": 30.6210864, "Latitude": -96.3403882 },
+        { "Building": "ILCB", "Longitude": 30.6121286, "Latitude": -96.344399 },
+        { "Building": "RUDDER", "Longitude": 30.612794, "Latitude": -96.3397918 },
+        { "Building": "HELD", "Longitude": 30.6151096, "Latitude": -96.3386853 },
+        { "Building": "ACADEMIC BUILDING", "Longitude": 30.6157848, "Latitude": -96.3407941 },
+        { "Building": "KYLE FIELD", "Longitude": 30.609879, "Latitude": -96.3409651 }
+    ];
+
+    // Function to populate the dropdown
+    function populateDropdown() {
+        const dropdown = document.getElementById('location');
+        dropdown.innerHTML = '<option value="" disabled selected>Select a location</option>';
+
+        locations.forEach(function(location) {
+            const option = document.createElement('option');
+            option.value = `${location.Building}|${location.Longitude}|${location.Latitude}`;
+            option.textContent = location.Building;
+            dropdown.appendChild(option);
+        });
+    }
+
+    // Call the function to populate the dropdown when the page loads
+    window.onload = populateDropdown;
+
+    document.getElementById('locationForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get form values
+        const selectedLocation = document.getElementById('location').value;
+        const [building, longitude, latitude] = selectedLocation.split('|');
+        const date = document.getElementById('date').value;
+        const time = document.getElementById('time').value;
+        const imageInput = document.getElementById('image');
+        const imageFile = imageInput.files[0];
+
+        // Create output message
+        let outputHtml = `<h2>Miss Rev's Last Location</h2>`;
+        outputHtml += `<p><strong>Building:</strong> ${building}</p>`;
+        outputHtml += `<p><strong>Longitude:</strong> ${longitude}</p>`;
+        outputHtml += `<p><strong>Latitude:</strong> ${latitude}</p>`;
+        outputHtml += `<p><strong>Date:</strong> ${date}</p>`;
+        outputHtml += `<p><strong>Time:</strong> ${time}</p>`;
+        
+        if (imageFile) {
+            const imageUrl = URL.createObjectURL(imageFile);
+            outputHtml += `<p><strong>Uploaded Picture:</strong></p>`;
+            outputHtml += `<img src="${imageUrl}" alt="Uploaded Image" style="max-width: 300px;">`;
+        }
+
+        const outputDiv = document.getElementById('output');
+        outputDiv.innerHTML = outputHtml;
+        outputDiv.style.display = 'block';
+
+        // Reset form
+        document.getElementById('locationForm').reset();
+    });
+</script>
 <footer>
     <nav>
         <a href="index.html">Where's Rev?</a>
