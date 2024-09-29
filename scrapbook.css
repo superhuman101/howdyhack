@@ -15,8 +15,10 @@ body {
 
 /* Title and Subtitle */
 h1 {
-    color: #500000;
-    margin-bottom: 10px;
+    font-family: 'Rye', cursive;
+    font-size: 3em;
+    color: #500000; /* Texas A&M Maroon */
+    margin: 20px 0;
 }
 
 .subtitle {
