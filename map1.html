@@ -32,7 +32,7 @@
 
     <script>
         // Initialize the map and set its view to a default location and zoom level
-        var map = L.map('map').setView([30.6120, -96.343], 16); // Coordinates for College Station, TX
+        var map = L.map('map', {zoomControl: false}).setView([30.6120, -96.343], 16); // Coordinates for College Station, TX
 
         // Add the OpenStreetMap tiles
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

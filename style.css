@@ -5,15 +5,31 @@ body {
     background-color: transparent;
 }
 
-.top-left-gif {
-    position: fixed; /* Sticks to the top-right corner even on scroll */
-    top: 10px;       /* Distance from the top */
-    left: 10px;     /* Distance from the right */
-    width: 90px;     /* Set the new width of the GIF to make it smaller */
-    height: auto;    /* Maintain the aspect ratio */
-    z-index: 1000;   /* Ensure the GIF appears above other elements */
+/* Container for GIF and Title */
+.gif-title-container {
+    position: fixed;  /* Keep the GIF and title in a fixed position */
+    top: 10px;        /* Distance from the top */
+    left: 10px;       /* Distance from the left */
+    display: flex;    /* Flexbox to align the GIF and title horizontally */
+    align-items: center; /* Vertically center the GIF and title */
+    z-index: 1000;    /* Ensure it stays on top of other elements */
 }
 
+/* Style for the GIF */
+.top-left-gif {
+    width: 100px;      /* Adjust the size of the GIF */
+    height: auto;     /* Maintain aspect ratio */
+    margin-right: 10px; /* Space between GIF and title */
+}
+
+/* Style for the title next to the GIF */
+.gif-title {
+    font-size: 26px;
+    font-weight: bold;
+    color: #450012; /* Adjust the color to make it visible against the background */
+}
+
+/* Footer styling */
 footer {
     background-color: #450012;
     color: rgba(145, 142, 142, 0.808);
