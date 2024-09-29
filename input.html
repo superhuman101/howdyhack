@@ -26,6 +26,8 @@
     <input type="submit" value="Submit">
 </form>
 
+<div id="output" class="output" style="display:none;"></div>
+
 <script>
     document.getElementById('locationForm').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent the form from submitting
@@ -34,20 +36,31 @@
         const location = document.getElementById('location').value;
         const date = document.getElementById('date').value;
         const time = document.getElementById('time').value;
+        const imageInput = document.getElementById('image');
+        const imageFile = imageInput.files[0];
 
-        // Redirect to the results page with query parameters
-        const queryString = `?location=${encodeURIComponent(location)}&date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}`;
-        window.location.href = `results.html${queryString}`;
+        // Create output message
+        let outputHtml = `<h2>Miss Rev's Last Location</h2>`;
+        outputHtml += `<p><strong>Location:</strong> ${location}</p>`;
+        outputHtml += `<p><strong>Date:</strong> ${date}</p>`;
+        outputHtml += `<p><strong>Time:</strong> ${time}</p>`;
+        
+        if (imageFile) {
+            // Create a URL for the uploaded image file
+            const imageUrl = URL.createObjectURL(imageFile);
+            outputHtml += `<p><strong>Uploaded Picture:</strong></p>`;
+            outputHtml += `<img src="${imageUrl}" alt="Uploaded Image">`;
+        }
+
+        // Display the output
+        const outputDiv = document.getElementById('output');
+        outputDiv.innerHTML = outputHtml;
+        outputDiv.style.display = 'block';
+
+        // Reset the form
+        document.getElementById('locationForm').reset();
     });
 </script>
-
-<footer>
-    <nav>
-        <a href="index.html">Where's Rev?</a>
-        <a href="input.html">Upload</a>
-        <a href="services.html">Leaderboard</a>
-    </nav>
-</footer>
 
 </body>
 </html>
