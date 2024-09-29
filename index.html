@@ -3,46 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WANTED</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home - My Simple Website</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link to external CSS file -->
-
     <style>
-        /* Lower the iframe using margin-top */
-        .map-container {
-            margin-top: 0px; /* Adjust the value to lower the map */
-            text-align: center; /* Centering the map (optional) */
+        body {
+            zoom: 0.60; /* Zoom out for better visibility */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Use min-height instead of height */
+            background-color: #eed9c4; /* Background color */
+            font-family: Arial, sans-serif;
+            padding: 20px; /* Add padding to prevent cutting off */
         }
-
-        iframe {
-            width: 100%;
-            height: 920px;
-            border: none; /* Remove iframe border */
+        h1, .reveille, button, .small-text {
+            font-family: 'Rye', cursive; /* Apply Rye font to all these elements */
+            color: #1d1a13; /* Text color */
+        }
+        h1 {
+            font-size: 150px; /* Increased font size */
+            margin-bottom: 20px;
+        }
+        .star {
+            color: #FDDA0D; /* Star color */
+            font-size: 150px; /* Size of stars */
+            margin: 0 10px; /* Spacing around stars */
+        }
+        img {
+            max-width: 1500px; /* Increased image size */
+            height: auto; /* Maintain aspect ratio */
+            margin: 20px 0; /* Spacing around the image */
+        }
+        button {
+            padding: 20px 40px; /* Increased padding for a larger button */
+            font-size: 36px; /* Increased font size for the button */
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: black; /* Button color */
+            color: white; /* Text color */
+            margin: 20px 0; /* Spacing around the button */
+        }
+        button:hover {
+            background-color: #333; /* Darker shade on hover */
+        }
+        .reveille {
+            font-size: 96px; /* Increased font size for REVEILLE */
+            margin: 10px 0; /* Spacing around REVEILLE */
+            letter-spacing: 4px; /* Increased letter spacing */
+        }
+        .amount {
+            font-size: 120px; /* Increased font size for $100,000 */
+            margin: 10px 0; /* Spacing around the amount */
+            font-family: 'Times New Roman', Times, serif; /* Change font for the amount */
+            color: #1d1a13; /* Text color */
+            letter-spacing: 5px; /* Increased letter spacing */
+        }
+        .small-text {
+            font-size: 24px; /* Smaller font size for the description */
+            margin: 5px 0; /* Spacing around the small text */
+            font-family: 'Rye', cursive; /* Apply Rye font to the small text */
         }
     </style>
-
 </head>
 <body>
+    <h1>
+        <span class="star">★</span> WANTED <span class="star">★</span>
+    </h1>
+    <img src="rev1.png" alt="REV Image"> <!-- Updated image file name -->
+    <button id="enterButton">JOIN THE SEARCH</button>
 
-    <!-- Container for GIF and Title -->
-    <div class="gif-title-container">
-        <img src="revellie.gif" class="top-left-gif" alt="Revellie GIF">
-        <span class="gif-title">Where's Rev?</span> <!-- Title next to the GIF -->
-    </div>
-    
-    <div class="map-container">
-        <iframe src="map1.html"></iframe> <!-- Embed the map file -->
-    </div>  
+    <div class="reveille">REVEILLE</div>
+    <div class="amount">$100,000$</div>
+    <div class="small-text">in dining dollars</div>
+
+    <script>
+        // JavaScript to redirect to home.html when the button is clicked
+        document.getElementById('enterButton').addEventListener('click', function() {
+            window.location.href = 'home.html'; // Change this to the correct path to your home.html file
+        });
+    </script>
+
 </body>
-
-<footer>
-    <nav>
-        <a href="index.html">Where's Rev?</a>
-        <a href="input.html">Upload</a>
-        <a href="scrapbook.html">Scrapbook</a>
-        <a href="spin-the-wheel-jeopardy.html">Spin the Wheel</a>
-    </nav>
-</footer>
-
 </html>
+
