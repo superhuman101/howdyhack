@@ -32,7 +32,7 @@ button {
     display: block;
     margin: 20px auto;
     padding: 10px 20px;
-    background-color: #ff99cc; /* Pink button */
+    background-color: #500000; /* Pink button */
     border: none;
     color: white;
     font-size: 1.5em;
@@ -42,7 +42,7 @@ button {
 }
 
 button:hover {
-    background-color: #ff66b2; /* Darker pink on hover */
+    background-color: #500000; /* Darker pink on hover */
 }
 
 #question-container {
