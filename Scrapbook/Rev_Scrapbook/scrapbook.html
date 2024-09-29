@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Texas A&M Scrapbook</title>
+    <link rel="stylesheet" href="scrapbook.css"> <!-- Link to CSS file -->
+</head>
+<body>
+    <div class="container">
+        <h1>My Texas A&M Scrapbook</h1>
+
+        <!-- Image Upload Section -->
+        <div class="upload-section">
+            <input type="file" id="fileInput" accept="image/*" />
+            <button onclick="uploadImage()">Add Photo</button>
+        </div>
+
+        <!-- Image Grid -->
+        <div id="imageGrid" class="image-grid">
+            <div class="image-item">
+                <img src="images/aggie_logo.jpg" alt="Texas A&M Logo">
+                <div class="hover-details">
+                    <p>Texas A&M Logo<br>2024, College Station</p>
+                </div>
+            </div>
+            <div class="image-item">
+                <img src="images/reveille.jpg" alt="Reveille">
+                <div class="hover-details">
+                    <p>Reveille<br>2023, Kyle Field</p>
+                </div>
+            </div>
+            <div class="image-item">
+                <img src="images/football.jpg" alt="Aggie Football">
+                <div class="hover-details">
+                    <p>Aggie Football<br>2023, Kyle Field</p>
+                </div>
+            </div>
+            <div class="image-item">
+                <img src="images/glitter_pattern.jpg" alt="Glitter Pattern">
+                <div class="hover-details">
+                    <p>Glitter Pattern<br>2024, Texas</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scrapbook.js"></script> <!-- Link to JavaScript file -->
+</body>
+</html>
