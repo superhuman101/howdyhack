@@ -5,7 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Where I found Miss Rev!!</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="input_styles.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f9f9f9;
+            font-family: 'Poppins', sans-serif;
+        }
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        form {
+            max-width: 400px;
+            padding: 20px;
+            background: #fff;
+            border: 2px solid #ff6f61;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #ff6f61;
+            border-radius: 10px;
+            background-color: #ffe6e1;
+            font-size: 16px;
+            color: #333;
+            transition: border-color 0.3s;
+        }
+        select:focus {
+            border-color: #ff3e30;
+            outline: none;
+        }
+        input[type="date"],
+        input[type="time"],
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #ff6f61;
+            border-radius: 10px;
+            background-color: #ffe6e1;
+            font-size: 16px;
+            color: #333;
+        }
+        input[type="submit"] {
+            width: 100%;
+            background-color: #ff6f61;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #ff3e30;
+        }
+    </style>
 </head>
 <body>
 
@@ -13,6 +83,14 @@
 <form id="locationForm">
     <label for="location">Location:</label>
     <input type="text" id="location" name="location" required placeholder="Enter your location">
+    <select id="location" name="location" required>
+        <option value="" disabled selected>Select a location</option>
+        <option value="Main Campus">Main Campus</option>
+        <option value="North Campus">North Campus</option>
+        <option value="West Campus">West Campus</option>
+        <option value="East Quad">East Quad</option>
+        <option value="Sports Complex">Sports Complex</option>
+    </select>
 
     <label for="date">Date:</label>
     <input type="date" id="date" name="date" required>
@@ -29,8 +107,32 @@
 <div id="output" class="output" style="display:none;"></div>
 
 <script>
+    // Assuming you have a JSON array of locations from the CSV file
+    const locations = [
+        { "Location": "Main Campus" },
+        { "Location": "North Campus" },
+        { "Location": "East Quad" },
+        { "Location": "West Park" }
+    ];
+
+    // Function to populate the dropdown
+    function populateDropdown() {
+        const dropdown = document.getElementById('location');
+        dropdown.innerHTML = '<option value="" disabled selected>Select a location</option>';
+
+        locations.forEach(function(location) {
+            const option = document.createElement('option');
+            option.value = location.Location;
+            option.textContent = location.Location;
+            dropdown.appendChild(option);
+        });
+    }
+
+    // Call the function to populate the dropdown when the page loads
+    window.onload = populateDropdown;
+
     document.getElementById('locationForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the form from submitting
+        event.preventDefault(); // Prevent form submission
 
         // Get form values
         const location = document.getElementById('location').value;
@@ -46,29 +148,19 @@
         outputHtml += `<p><strong>Time:</strong> ${time}</p>`;
         
         if (imageFile) {
-            // Create a URL for the uploaded image file
             const imageUrl = URL.createObjectURL(imageFile);
             outputHtml += `<p><strong>Uploaded Picture:</strong></p>`;
-            outputHtml += `<img src="${imageUrl}" alt="Uploaded Image">`;
+            outputHtml += `<img src="${imageUrl}" alt="Uploaded Image" style="max-width: 300px;">`;
         }
 
-        // Display the output
         const outputDiv = document.getElementById('output');
         outputDiv.innerHTML = outputHtml;
         outputDiv.style.display = 'block';
 
-        // Reset the form
+        // Reset form
         document.getElementById('locationForm').reset();
     });
 </script>
-
-<footer>
-    <nav>
-        <a href="index.html">Where's Rev?</a>
-        <a href="input.html">Upload</a>
-        <a href="scrapbook.html">Scrapbook</a>
-    </nav>
-</footer>
 
 </body>
 </html>
