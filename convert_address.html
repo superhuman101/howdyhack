@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert Address to Coordinates</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            margin-top: 10px;
+        }
+
+        input {
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #coordinateResult {
+            margin-top: 20px;
+        }
+
+        footer {
+            margin-top: 30px;
+        }
+
+        .back-button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .back-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Convert Address to Coordinates</h1>
+<form id="addressForm">
+    <label for="street">Street Address:</label>
+    <input type="text" id="street" placeholder="Enter Street" required>
+
+    <label for="city">City:</label>
+    <input type="text" id="city" placeholder="Enter City" required>
+
+    <label for="country">Country:</label>
+    <input type="text" id="country" placeholder="Enter Country" required>
+
+    <button id="convertAddress" type="button">Convert to Coordinates</button>
+
+    <p id="coordinateResult"></p> <!-- Display the conversion result -->
+</form>
+
+<!-- Go Back Button -->
+<footer>
+    <a href="input.html" class="back-button">Go Back</a>
+</footer>
+
+<script>
+    const coordinateResult = document.getElementById('coordinateResult');
+
+    // Function to fetch coordinates from Nominatim API
+    async function getCoordinates(street, city, country) {
+        const query = `${encodeURIComponent(street)}, ${encodeURIComponent(city)}, ${encodeURIComponent(country)}`;
+        const url = `https://nominatim.openstreetmap.org/search?q=${query}&format=json&limit=1`;
+        const response = await fetch(url);
+        const data = await response.json();
+        if (data.length > 0) {
+            return {
+                latitude: parseFloat(data[0].lat),  // Ensure numeric values
+                longitude: parseFloat(data[0].lon)  // Ensure numeric values
+            };
+        } else {
+            return null;
+        }
+    }
+
+    // Handle address to coordinate conversion
+    document.getElementById('convertAddress').addEventListener('click', async function() {
+        const street = document.getElementById('street').value;
+        const city = document.getElementById('city').value;
+        const country = document.getElementById('country').value;
+
+        const coordinates = await getCoordinates(street, city, country);
+
+        if (coordinates) {
+            // Show the conversion result
+            coordinateResult.textContent = `Coordinates: Latitude: ${coordinates.latitude}, Longitude: ${coordinates.longitude}`;
+        } else {
+            coordinateResult.textContent = 'Address not found. Please try a different address.';
+        }
+    });
+</script>
+
+</body>
+</html>

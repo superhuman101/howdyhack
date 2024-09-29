@@ -14,21 +14,38 @@ var customIcon = L.icon({
     popupAnchor: [0, 0], // Point from which the popup should open relative to the iconAnchor
 });
 
-// CSV data converted to a JavaScript array
+// Existing locations (predefined)
 const locations = [
     { "Building": "MSC", "Longitude": 30.6122578, "Latitude": -96.3415445 },
     { "Building": "ZACH", "Longitude": 30.6210864, "Latitude": -96.3403882 },
-    { "Building": "ILCB", "Longitude": 30.6121286, "Latitude": -96.344399 },
-    { "Building": "RUDDER", "Longitude": 30.612794, "Latitude": -96.3397918 },
-    { "Building": "HELD", "Longitude": 30.6151096, "Latitude": -96.3386853 },
-    { "Building": "ACADEMIC BUILDING", "Longitude": 30.6157848, "Latitude": -96.3407941 },
-    { "Building": "KYLE FIELD", "Longitude": 30.609879, "Latitude": -96.3409651 }
+    // Add more locations as needed
 ];
 
-// Function to add markers to the map with custom icon
+// Add existing locations as markers
 locations.forEach(function(location) {
     L.marker([location.Longitude, location.Latitude], { icon: customIcon })
         .addTo(map)
-        .bindPopup(`<b>${location.Building}</b><br>Coordinates: ${location.Longitude}, ${location.Latitude}`)
-        .openPopup();
+        .bindPopup(`<b>${location.Building}</b><br>Coordinates: ${location.Longitude}, ${location.Latitude}`);
 });
+
+// Retrieve submitted coordinates from localStorage
+const longitude = localStorage.getItem('longitude');
+const latitude = localStorage.getItem('latitude');
+const date = localStorage.getItem('date');
+const time = localStorage.getItem('time');
+
+console.log("Checking localStorage for new pin:", { longitude, latitude, date, time }); // Debugging
+
+// Add a new marker if coordinates are available
+if (longitude && latitude && date && time) {
+    console.log("Adding new pin to the map"); // Debugging
+    L.marker([longitude, latitude], { icon: customIcon })
+        .addTo(map)
+        .bindPopup(`<b>New Location</b><br>Coordinates: ${longitude}, ${latitude}<br>Date: ${date}<br>Time: ${time}`);
+    
+    // Clear localStorage after adding the pin
+    // localStorage.removeItem('longitude');
+    // localStorage.removeItem('latitude');
+    // localStorage.removeItem('date');
+    // localStorage.removeItem('time');
+}

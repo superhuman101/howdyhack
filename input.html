@@ -1,108 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Where I found Miss Rev!!</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="input_styles.css">
-</head>
-<body>
-
-<h1>Where Reveille was last found!</h1>
-<form id="locationForm">
-    <label for="location">Location:</label>
-    <select id="location" name="location" required>
-        <option value="" disabled selected>Select a location</option>
-        <option value="Main Campus">Main Campus</option>
-        <option value="North Campus">North Campus</option>
-        <option value="West Campus">West Campus</option>
-        <option value="East Quad">East Quad</option>
-        <option value="Sports Complex">Sports Complex</option>
-    </select>
-
-    <label for="date">Date:</label>
-    <input type="date" id="date" name="date" required>
-
-    <label for="time">Time:</label>
-    <input type="time" id="time" name="time" required>
-
-    <label for="image">Upload Picture:</label>
-    <input type="file" id="image" name="image" accept="image/*">
-
-    <input type="submit" value="Submit">
-</form>
-
-<div id="output" class="output" style="display:none;"></div>
-
-<script>
-    // Assuming you have a JSON array of locations from the CSV file
-    const locations = [
-        { "Location": "Main Campus" },
-        { "Location": "North Campus" },
-        { "Location": "East Quad" },
-        { "Location": "West Park" }
-    ];
-
-    // Function to populate the dropdown
-    function populateDropdown() {
-        const dropdown = document.getElementById('location');
-        dropdown.innerHTML = '<option value="" disabled selected>Select a location</option>';
-
-        locations.forEach(function(location) {
-            const option = document.createElement('option');
-            option.value = location.Location;
-            option.textContent = location.Location;
-            dropdown.appendChild(option);
-        });
-    }
-
-    // Call the function to populate the dropdown when the page loads
-    window.onload = populateDropdown;
-
-    document.getElementById('locationForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent form submission
-
-        // Get form values
-        const location = document.getElementById('location').value;
-        const date = document.getElementById('date').value;
-        const time = document.getElementById('time').value;
-        const imageInput = document.getElementById('image');
-        const imageFile = imageInput.files[0];
-
-        // Create output message
-        let outputHtml = `<h2>Miss Rev's Last Location</h2>`;
-        outputHtml += `<p><strong>Location:</strong> ${location}</p>`;
-        outputHtml += `<p><strong>Date:</strong> ${date}</p>`;
-        outputHtml += `<p><strong>Time:</strong> ${time}</p>`;
-        
-        if (imageFile) {
-            const imageUrl = URL.createObjectURL(imageFile);
-            outputHtml += `<p><strong>Uploaded Picture:</strong></p>`;
-            outputHtml += `<img src="${imageUrl}" alt="Uploaded Image" style="max-width: 300px;">`;
-        }
-
-        const outputDiv = document.getElementById('output');
-        outputDiv.innerHTML = outputHtml;
-        outputDiv.style.display = 'block';
-
-        // Reset form
-        document.getElementById('locationForm').reset();
-    });
-</script>
-
-<footer>
-    <nav>
-        <a href="index.html">Where's Rev?</a>
-        <a href="input.html">Upload</a>
-        <a href="scrapbook.html">Scrapbook</a>
-    </nav>
-</footer>
-
-</body>
-</html> -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -114,12 +9,18 @@
 </head>
 <body>
 
+<!-- Button to redirect to the convert_address.html page -->
+<div style="margin-top: 20px;">
+    <a href="convert_address.html" class="convert-btn">Convert Address to Coordinates</a>
+</div>
+
 <h1>Where Reveille was last found!</h1>
 <form id="locationForm">
-    <label for="location">Location:</label>
-    <select id="location" name="location" required>
-        <!-- Dropdown options will be populated using JavaScript -->
-    </select>
+    <label for="longitude">Longitude:</label>
+    <input type="text" id="longitude" name="longitude" required placeholder="Enter Longitude">
+    
+    <label for="latitude">Latitude:</label>
+    <input type="text" id="latitude" name="latitude" required placeholder="Enter Latitude">
 
     <label for="date">Date:</label>
     <input type="date" id="date" name="date" required>
@@ -127,75 +28,32 @@
     <label for="time">Time:</label>
     <input type="time" id="time" name="time" required>
 
-    <label for="image">Upload Picture:</label>
-    <input type="file" id="image" name="image" accept="image/*">
-
     <input type="submit" value="Submit">
 </form>
 
-<div id="output" class="output" style="display:none;"></div>
-
 <script>
-    // CSV data converted to a JavaScript array
-    const locations = [
-        { "Building": "MSC", "Longitude": 30.6122578, "Latitude": -96.3415445 },
-        { "Building": "ZACH", "Longitude": 30.6210864, "Latitude": -96.3403882 },
-        { "Building": "ILCB", "Longitude": 30.6121286, "Latitude": -96.344399 },
-        { "Building": "RUDDER", "Longitude": 30.612794, "Latitude": -96.3397918 },
-        { "Building": "HELD", "Longitude": 30.6151096, "Latitude": -96.3386853 },
-        { "Building": "ACADEMIC BUILDING", "Longitude": 30.6157848, "Latitude": -96.3407941 },
-        { "Building": "KYLE FIELD", "Longitude": 30.609879, "Latitude": -96.3409651 }
-    ];
-
-    // Function to populate the dropdown
-    function populateDropdown() {
-        const dropdown = document.getElementById('location');
-        dropdown.innerHTML = '<option value="" disabled selected>Select a location</option>';
-
-        locations.forEach(function(location) {
-            const option = document.createElement('option');
-            option.value = `${location.Building}|${location.Longitude}|${location.Latitude}`;
-            option.textContent = location.Building;
-            dropdown.appendChild(option);
-        });
-    }
-
-    // Call the function to populate the dropdown when the page loads
-    window.onload = populateDropdown;
-
     document.getElementById('locationForm').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent form submission
 
         // Get form values
-        const selectedLocation = document.getElementById('location').value;
-        const [building, longitude, latitude] = selectedLocation.split('|');
+        const longitude = document.getElementById('longitude').value;
+        const latitude = document.getElementById('latitude').value;
         const date = document.getElementById('date').value;
         const time = document.getElementById('time').value;
-        const imageInput = document.getElementById('image');
-        const imageFile = imageInput.files[0];
 
-        // Create output message
-        let outputHtml = `<h2>Miss Rev's Last Location</h2>`;
-        outputHtml += `<p><strong>Building:</strong> ${building}</p>`;
-        outputHtml += `<p><strong>Longitude:</strong> ${longitude}</p>`;
-        outputHtml += `<p><strong>Latitude:</strong> ${latitude}</p>`;
-        outputHtml += `<p><strong>Date:</strong> ${date}</p>`;
-        outputHtml += `<p><strong>Time:</strong> ${time}</p>`;
-        
-        if (imageFile) {
-            const imageUrl = URL.createObjectURL(imageFile);
-            outputHtml += `<p><strong>Uploaded Picture:</strong></p>`;
-            outputHtml += `<img src="${imageUrl}" alt="Uploaded Image" style="max-width: 300px;">`;
-        }
+        // Store values in localStorage
+        localStorage.setItem('longitude', longitude);
+        localStorage.setItem('latitude', latitude);
+        localStorage.setItem('date', date);
+        localStorage.setItem('time', time);
 
-        const outputDiv = document.getElementById('output');
-        outputDiv.innerHTML = outputHtml;
-        outputDiv.style.display = 'block';
+        console.log("Submitted values:", {longitude, latitude, date, time}); // Debugging
 
-        // Reset form
-        document.getElementById('locationForm').reset();
+        // Redirect to the map to add the new point
+        window.location.href = 'index.html'; // Redirect to map
     });
 </script>
+
 <footer>
     <nav>
         <a href="index.html">Where's Rev?</a>
