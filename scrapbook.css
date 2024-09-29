@@ -1,6 +1,6 @@
 /* General Body Styling */
 body {
-    font-family: 'Pacifico', cursive;
+    font-family: 'Rye', sans-serif;
     background-color: #faf3e3; /* Light brown for warmth */
     margin: 0;
     padding: 0;
@@ -22,7 +22,7 @@ h1 {
 }
 
 .subtitle {
-    font-family: 'Crushed', cursive;
+    font-family: 'Rye', sans-serif;
     color: #AC714A;
     font-size: 1.5em;
     margin-top: -5px;
@@ -120,7 +120,7 @@ footer nav {
 }
 
 footer nav a {
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Rye', sans-serif;
     color: white;
     text-decoration: none;
     margin: 0 120px;
