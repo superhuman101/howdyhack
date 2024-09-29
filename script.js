@@ -12,7 +12,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // Define custom icon
 var customIcon = L.icon({
-    iconUrl: './IMG_1306 2.png', // Path to your custom icon
+    iconUrl: 'images/IMG_1306 2.png', // Path to your custom icon
     iconSize: [100, 100], // Adjust the size of the icon
     iconAnchor: [45, 10], // Point of the icon which will correspond to marker's location (bottom center)
     popupAnchor: [0, 0], // Point from which the popup should open relative to the iconAnchor
