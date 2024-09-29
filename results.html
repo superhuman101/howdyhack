@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miss Rev's Last Location</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="input_styles.css">
+</head>
+<body>
+
+<h1>Miss Rev's Last Location</h1>
+<div id="resultOutput"></div>
+
+<a href="input.html">Go Back</a> <!-- Link to go back to the original page -->
+
+<script>
+    // Function to get query parameters
+    function getQueryParams() {
+        const params = {};
+        const queryString = window.location.search.substring(1);
+        const queries = queryString.split("&");
+        queries.forEach(function(query) {
+            const pair = query.split("=");
+            params[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+        });
+        return params;
+    }
+
+    // Get query parameters and display them
+    const queryParams = getQueryParams();
+    const resultDiv = document.getElementById('resultOutput');
+    let resultHtml = `<p><strong>Location:</strong> ${queryParams.location}</p>`;
+    resultHtml += `<p><strong>Date:</strong> ${queryParams.date}</p>`;
+    resultHtml += `<p><strong>Time:</strong> ${queryParams.time}</p>`;
+
+    resultDiv.innerHTML = resultHtml;
+</script>
+
+</body>
+</html>

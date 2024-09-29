@@ -5,72 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Where I found Miss Rev!!</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f9f9f9;
-            margin: 0;
-            padding: 20px;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        form {
-            max-width: 400px;
-            margin: auto;
-            padding: 20px;
-            background: #fff;
-            border: 2px solid #500000;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #555;
-        }
-        input[type="text"], input[type="date"], input[type="time"], input[type="file"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 2px solid #500000;
-            border-radius: 5px;
-            transition: border-color 0.3s;
-        }
-        input[type="text"]:focus, input[type="date"]:focus, input[type="time"]:focus, input[type="file"]:focus {
-            border-color: #500000;
-            outline: none;
-        }
-        input[type="submit"] {
-            background-color: #500000;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-            width: 100%;
-        }
-        input[type="submit"]:hover {
-            background-color: #500000;
-        }
-        .output {
-            margin-top: 20px;
-            padding: 10px;
-            background: #fff;
-            border: 2px solid #500000;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        img {
-            max-width: 100%; /* Make sure the image is responsive */
-            margin-top: 10px;
-            border: 2px solid #500000;
-            border-radius: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="input_styles.css">
 </head>
 <body>
 
@@ -91,8 +26,6 @@
     <input type="submit" value="Submit">
 </form>
 
-<div id="output" class="output" style="display:none;"></div>
-
 <script>
     document.getElementById('locationForm').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent the form from submitting
@@ -101,31 +34,20 @@
         const location = document.getElementById('location').value;
         const date = document.getElementById('date').value;
         const time = document.getElementById('time').value;
-        const imageInput = document.getElementById('image');
-        const imageFile = imageInput.files[0];
 
-        // Create output message
-        let outputHtml = `<h2>Miss Rev's Last Location</h2>`;
-        outputHtml += `<p><strong>Location:</strong> ${location}</p>`;
-        outputHtml += `<p><strong>Date:</strong> ${date}</p>`;
-        outputHtml += `<p><strong>Time:</strong> ${time}</p>`;
-        
-        if (imageFile) {
-            // Create a URL for the uploaded image file
-            const imageUrl = URL.createObjectURL(imageFile);
-            outputHtml += `<p><strong>Uploaded Picture:</strong></p>`;
-            outputHtml += `<img src="${imageUrl}" alt="Uploaded Image">`;
-        }
-
-        // Display the output
-        const outputDiv = document.getElementById('output');
-        outputDiv.innerHTML = outputHtml;
-        outputDiv.style.display = 'block';
-
-        // Reset the form
-        document.getElementById('locationForm').reset();
+        // Redirect to the results page with query parameters
+        const queryString = `?location=${encodeURIComponent(location)}&date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}`;
+        window.location.href = `results.html${queryString}`;
     });
 </script>
+
+<footer>
+    <nav>
+        <a href="index.html">Where's Rev?</a>
+        <a href="input.html">Upload</a>
+        <a href="services.html">Leaderboard</a>
+    </nav>
+</footer>
 
 </body>
 </html>
