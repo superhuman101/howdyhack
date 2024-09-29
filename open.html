@@ -56,14 +56,13 @@
         <span class="star">★</span> WANTED: REV <span class="star">★</span>
     </h1>
     <img src="rev1.png" alt="REV Image"> <!-- Updated image file name -->
-    <button id="enterButton">Click if you know</button>
+    <button id="enterButton">Join the Search</button>
 
     <script>
-        document.getElementById("enterButton").onclick = function() {
-            alert("Welcome!");
-            // Uncomment the line below to redirect to another page
-            // window.location.href = "your-page.html";
-        };
+        // JavaScript to redirect to index.html when the button is clicked
+        document.getElementById('enterButton').addEventListener('click', function() {
+            window.location.href = 'index.html'; // Change this to the correct path to your index.html file
+        });
     </script>
 
 </body>
