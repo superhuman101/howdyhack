@@ -4,21 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Texas A&M Scrapbook</title>
-    <link rel="stylesheet" href="scrapbook.css"> <!-- Updated CSS file -->
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="scrapbook.css">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Pacifico&family=Crushed&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <div class="container">
-        <h1>My Texas A&M Scrapbook</h1>
+        <h1>What I've Been Up To...</h1>
+        <h2 class="subtitle">#catchmeifyoucan</h2> <!-- Subtitle -->
 
-        <!-- Image Upload Section -->
+        <!-- Upload Section -->
         <div class="upload-section">
-            <input type="file" id="fileInput" accept="image/*" />
-            <button onclick="uploadImage()">Add Photo</button>
-        </div>
+            <label for="fileInput">Upload Photo:</label>
+            <input type="file" id="fileInput" accept="image/*"><br><br>
 
-        <!-- Image Grid -->
-        <div id="imageGrid" class="image-grid">
+            <label for="titleInput">Title:</label>
+            <input type="text" id="titleInput" placeholder="Enter Photo Title"><br><br>
+
+            <label for="dateInput">Date:</label>
+            <input type="date" id="dateInput"><br><br>
+
+            <label for="locationInput">Location:</label>
+            <input type="text" id="locationInput" placeholder="Enter Location"><br><br>
+
+            <button onclick="uploadImage()">Upload Photo</button>
+        </div>
+        
+        <!-- Scrollable Grid Section -->
+        <div class="scrollable-grid">
             <div class="image-item">
                 <img src="images/rev_08_31_24_2.jpeg" alt="Rev Sighting!">
                 <div class="hover-details">
@@ -46,15 +59,6 @@
         </div>
     </div>
 
-    <script src="scrapbook.js"></script> <!-- Link to JavaScript file -->
-
-    <footer>
-        <nav>
-            <a href="index.html">Where's Rev?</a>
-            <a href="input.html">Upload</a>
-            <a href="scrapbook.html">Scrapbook</a>
-        </nav>
-    </footer>
-    
+    <script src="scrapbook.js"></script>
 </body>
 </html>
